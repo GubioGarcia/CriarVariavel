@@ -1,0 +1,22 @@
+﻿using CriarVariavel.Entities;
+using CriarVariavel.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CriarVariavel.Controllers
+{
+    public class CriarVariavelController : ControllerBase
+    {
+        private readonly CriarVariavelService _criarVariavelService;
+
+        public CriarVariavelController(CriarVariavelService criarVariavelService)
+        {
+            _criarVariavelService = criarVariavelService;
+        }
+
+        [HttpPost("CriarVariavel")]
+        public IActionResult CriarVariavel(Variavel variavel)
+        {
+            return Ok(_criarVariavelService.CriarVariavel(variavel));
+        }
+    }
+}
