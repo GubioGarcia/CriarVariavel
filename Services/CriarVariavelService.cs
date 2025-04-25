@@ -9,18 +9,14 @@ namespace CriarVariavel.Services
 
         public string CriarVariavel(List<Variavel> variaveis)
         {
-            if(variaveis == null || variaveis.Count == 0) throw new Exception("Nenhuma variável foi informada.");
+            if (variaveis == null || variaveis.Count == 0) throw new Exception("Nenhuma variável foi informada.");
 
             if (!ValidaDuplicidadeVariavel(variaveis)) RenomearVariavel(variaveis);
 
-            List<Dictionary<string, string>> variavel = [];
-            foreach (Variavel _valoresVariavel in variaveis)
+            Dictionary<string, string> variavel = [];
+            foreach (var _valoresVariavel in variaveis)
             {
-                Dictionary<string, string> variavelItem = new()
-                {
-                    { _valoresVariavel.NomeVariavel, _valoresVariavel.ValorVariavel }
-                };
-                variavel.Add(variavelItem);
+                variavel[_valoresVariavel.NomeVariavel] = _valoresVariavel.ValorVariavel;
             }
 
             return JsonSerializer.Serialize(variavel, new JsonSerializerOptions { WriteIndented = true });
@@ -41,7 +37,7 @@ namespace CriarVariavel.Services
             HashSet<string> _variaveisAux = [];
             foreach (Variavel _variavel in variaveis)
             {
-                if(!_variaveisAux.Add(_variavel.NomeVariavel))
+                if (!_variaveisAux.Add(_variavel.NomeVariavel))
                 {
                     _variavel.NomeVariavel += contadorVariavel;
                     contadorVariavel++;
