@@ -5,15 +5,19 @@ namespace CriarVariavel.Services
 {
     public class CriarVariavelService
     {
-        public string CriarVariavel(Variavel valoresVariavel)
+        public string CriarVariavel(List<Variavel> variaveis)
         {
-            Dictionary<string, string> variavel = new()
+            List<Dictionary<string, string>> variavel = [];
+            foreach (var valoresVariavel in variaveis)
             {
-                { valoresVariavel.NomeVariavel, valoresVariavel.ValorVariavel }
-            };
+                Dictionary<string, string> variavelItem = new()
+                {
+                    { valoresVariavel.NomeVariavel, valoresVariavel.ValorVariavel }
+                };
+                variavel.Add(variavelItem);
+            }
 
             return JsonSerializer.Serialize(variavel, new JsonSerializerOptions { WriteIndented = true });
-
         }
     }
 }

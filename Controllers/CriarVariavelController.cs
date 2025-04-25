@@ -14,9 +14,9 @@ namespace CriarVariavel.Controllers
         }
 
         [HttpPost("CriarVariavel")]
-        public IActionResult CriarVariavel(Variavel variavel)
+        public IActionResult CriarVariavel([FromBody] List<Variavel> variaveis)
         {
-            return Ok(_criarVariavelService.CriarVariavel(variavel));
+            return Ok(_criarVariavelService.CriarVariavel(variaveis));
         }
     }
 }
