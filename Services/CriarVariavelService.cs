@@ -5,8 +5,6 @@ namespace CriarVariavel.Services
 {
     public class CriarVariavelService
     {
-        private int contadorVariavel = 0;
-
         public string CriarVariavel(List<Variavel> variaveis)
         {
             if (variaveis == null || variaveis.Count == 0) throw new Exception("Nenhuma variável foi informada.");
@@ -22,7 +20,7 @@ namespace CriarVariavel.Services
             return JsonSerializer.Serialize(variavel, new JsonSerializerOptions { WriteIndented = true });
         }
 
-        private bool ValidaDuplicidadeVariavel(List<Variavel> variaveis)
+        private static bool ValidaDuplicidadeVariavel(List<Variavel> variaveis)
         {
             HashSet<string> _variaveisUnicas = [];
             foreach (Variavel _variavel in variaveis)
@@ -32,16 +30,33 @@ namespace CriarVariavel.Services
             return true;
         }
 
-        private void RenomearVariavel(List<Variavel> variaveis)
+        private static void RenomearVariavel(List<Variavel> variaveis)
         {
-            HashSet<string> _variaveisAux = [];
-            foreach (Variavel _variavel in variaveis)
+            HashSet<string> _nomesUsados = [];
+            Dictionary<string, int> contadorPorNome = [];
+
+            foreach (var variavel in variaveis)
             {
-                if (!_variaveisAux.Add(_variavel.NomeVariavel))
+                string _nomeOriginal = variavel.NomeVariavel;
+
+                // se o nome da variável já foi usado, gera um novo nome com o contador
+                if (!_nomesUsados.Add(_nomeOriginal))
                 {
-                    _variavel.NomeVariavel += contadorVariavel;
-                    contadorVariavel++;
+                    if (!contadorPorNome.ContainsKey(_nomeOriginal)) contadorPorNome[_nomeOriginal] = 1;
+
+                    string _novoNome;
+                    // gera nome novo e verifica se já foi usado
+                    do
+                    {
+                        _novoNome = _nomeOriginal + contadorPorNome[_nomeOriginal];
+                        contadorPorNome[_nomeOriginal]++;
+                    }
+                    while (!_nomesUsados.Add(_novoNome));
+
+                    variavel.NomeVariavel = _novoNome;
                 }
+                // se nome de variável não existe, adiciona ao conjunto de nomes usados e inica o contador da variável
+                else contadorPorNome[_nomeOriginal] = 1;
             }
         }
     }
