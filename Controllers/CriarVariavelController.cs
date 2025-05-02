@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CriarVariavel.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class CriarVariavelController : ControllerBase
     {
         private readonly CriarVariavelService _criarVariavelService;
