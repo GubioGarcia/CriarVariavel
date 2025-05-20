@@ -15,6 +15,7 @@ API ASP.NET Core que recebe uma lista de variáveis (nome e valor) via JSON, val
    ```bash
    git clone https://github.com/GubioGarcia/CriarVariavel
    cd CriarVariavel
+   ```
 
 2. Restaure os pacotes e execute a aplicação:
 dotnet restore
@@ -43,6 +44,7 @@ Exemplo de Requisição:
         "valorVariavel": "valor3"
       }
     ]
+    ```
 
 Exemplo de Resposta:
     ```bash
@@ -51,6 +53,7 @@ Exemplo de Resposta:
       "teste": "valor2",
       "variavel1": "valor3"
     }
+    ```
 
 ## 👨‍💻 Autor
 Desenvolvido por Gubio Garcia dos Santos.
