@@ -13,7 +13,7 @@ API ASP.NET Core que recebe uma lista de variáveis (nome e valor) via JSON, val
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/CriarVariavel.git
+   git clone https://github.com/GubioGarcia/CriarVariavel
    cd CriarVariavel
 
 2. Restaure os pacotes e execute a aplicação:
@@ -28,28 +28,31 @@ POST /api/CriarVariavel/CriarVariavel
 Recebe uma lista de variáveis e retorna o JSON com nomes únicos.
 
 Exemplo de Requisição:
-[
-  {
-    "nomeVariavel": "variavel",
-    "valorVariavel": "valor1"
-  },
-  {
-    "nomeVariavel": "teste",
-    "valorVariavel": "valor2"
-  },
-  {
-    "nomeVariavel": "variavel",
-    "valorVariavel": "valor3"
-  }
-]
+    ```bash
+    [
+      {
+        "nomeVariavel": "variavel",
+        "valorVariavel": "valor1"
+      },
+      {
+        "nomeVariavel": "teste",
+        "valorVariavel": "valor2"
+      },
+      {
+        "nomeVariavel": "variavel",
+        "valorVariavel": "valor3"
+      }
+    ]
 
 Exemplo de Resposta:
-{
-  "variavel": "valor1",
-  "teste": "valor2",
-  "variavel1": "valor3"
-}
+    ```bash
+    {
+      "variavel": "valor1",
+      "teste": "valor2",
+      "variavel1": "valor3"
+    }
 
 ## 👨‍💻 Autor
 Desenvolvido por Gubio Garcia dos Santos.
+
 Contato: [gubiogarcia@gmail.com] | GitHub: [https://github.com/gubiogarcia]
