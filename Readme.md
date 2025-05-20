@@ -29,7 +29,7 @@ POST /api/CriarVariavel/CriarVariavel
 Recebe uma lista de variáveis e retorna o JSON com nomes únicos.
 
 Exemplo de Requisição:
-    ```bash
+
     [
       {
         "nomeVariavel": "variavel",
@@ -44,16 +44,15 @@ Exemplo de Requisição:
         "valorVariavel": "valor3"
       }
     ]
-    ```
+
 
 Exemplo de Resposta:
-    ```bash
+
     {
       "variavel": "valor1",
       "teste": "valor2",
       "variavel1": "valor3"
     }
-    ```
 
 ## 👨‍💻 Autor
 Desenvolvido por Gubio Garcia dos Santos.
