@@ -18,11 +18,13 @@ API ASP.NET Core que recebe uma lista de variáveis (nome e valor) via JSON, val
    ```
 
 2. Restaure os pacotes e execute a aplicação:
-dotnet restore
-dotnet run
-
-3. Acesse a interface Swagger para testar a API:
-https://localhost:{PORTA}/swagger
+   ```bash
+   dotnet restore
+   dotnet run
+   ```
+   
+4. Acesse a interface Swagger para testar a API:
+https://localhost:{PORTA}/swagger/index.html
 
 ## 📌 Endpoint Disponível
 POST /api/CriarVariavel/CriarVariavel
