@@ -16,7 +16,7 @@ namespace CriarVariavel.Controllers
         }
 
         /// <summary>
-        /// Cria e atibui valor a uma variável ou um conjunto de variáveis. Trata variáveis duplicadas renomeando-as automaticamente com adição de sufixos numéricos.
+        /// Cria e atribui valor a uma variável ou um conjunto de variáveis. Trata variáveis duplicadas renomeando-as automaticamente com adição de sufixos numéricos.
         /// </summary>
         /// <param name="variaveis">Objeto correspondente a chave e valor da variável a ser criada.</param>
         /// <returns>Resultado da operação</returns>
