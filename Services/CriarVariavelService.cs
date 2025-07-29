@@ -1,9 +1,10 @@
 ﻿using CriarVariavel.Entities;
+using CriarVariavel.Interfaces;
 using System.Text.Json;
 
 namespace CriarVariavel.Services
 {
-    public class CriarVariavelService
+    public class CriarVariavelService : ICriarVariavelService
     {
         public string CriarVariavel(List<Variavel> variaveis)
         {
