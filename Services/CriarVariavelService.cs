@@ -8,14 +8,23 @@ namespace CriarVariavel.Services
     {
         public string CriarVariavel(List<Variavel> variaveis)
         {
-            if (variaveis == null || variaveis.Count == 0) throw new Exception("Nenhuma variável foi informada.");
+            if (variaveis is null) throw new Exception("A lista de variáveis não pode estar vazia. O corpo da requisição não foi enviado ou está inválido.");
+
+            foreach (var (_variavel, index) in variaveis.Select((v, i) => (v, i)))
+            {
+                if (string.IsNullOrWhiteSpace(_variavel.NomeVariavel))
+                    throw new ArgumentException($"NomeVariavel é obrigatório e não pode estar vazio ou conter apenas espaços. Erro no item {index + 1}.");
+
+                if (string.IsNullOrWhiteSpace(_variavel.ValorVariavel))
+                    throw new ArgumentException($"ValorVariavel é obrigatório e não pode estar vazio ou conter apenas espaços. Erro no item {index + 1}.");
+            }
 
             if (!ValidaDuplicidadeVariavel(variaveis)) RenomearVariavel(variaveis);
 
             Dictionary<string, string> variavel = [];
             foreach (var _valoresVariavel in variaveis)
             {
-                variavel[_valoresVariavel.NomeVariavel] = _valoresVariavel.ValorVariavel;
+                variavel[_valoresVariavel.NomeVariavel.Trim()] = _valoresVariavel.ValorVariavel.Trim();
             }
 
             return JsonSerializer.Serialize(variavel, new JsonSerializerOptions { WriteIndented = true });
