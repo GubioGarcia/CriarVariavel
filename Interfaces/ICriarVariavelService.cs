@@ -4,6 +4,6 @@ namespace CriarVariavel.Interfaces
 {
     public interface ICriarVariavelService
     {
-        public string CriarVariavel(List<Variavel> variaveis);
+        public Dictionary<string, string> CriarVariavel(List<Variavel> variaveis);
     }
 }

@@ -6,7 +6,7 @@ namespace CriarVariavel.Services
 {
     public class CriarVariavelService : ICriarVariavelService
     {
-        public string CriarVariavel(List<Variavel> variaveis)
+        public Dictionary<string, string> CriarVariavel(List<Variavel> variaveis)
         {
             if (variaveis is null) throw new Exception("A lista de variáveis não pode estar vazia. O corpo da requisição não foi enviado ou está inválido.");
 
@@ -27,17 +27,12 @@ namespace CriarVariavel.Services
                 variavel[_valoresVariavel.NomeVariavel.Trim()] = _valoresVariavel.ValorVariavel.Trim();
             }
 
-            return JsonSerializer.Serialize(variavel, new JsonSerializerOptions { WriteIndented = true });
+            return variavel;
         }
 
         private static bool ValidaDuplicidadeVariavel(List<Variavel> variaveis)
         {
-            HashSet<string> _variaveisUnicas = [];
-            foreach (Variavel _variavel in variaveis)
-            {
-                if (!_variaveisUnicas.Add(_variavel.NomeVariavel)) return false; // Encontrado variáveis duplicadas 
-            }
-            return true;
+            return variaveis.Select(v => v.NomeVariavel).Distinct().Count() == variaveis.Count;
         }
 
         private static void RenomearVariavel(List<Variavel> variaveis)
